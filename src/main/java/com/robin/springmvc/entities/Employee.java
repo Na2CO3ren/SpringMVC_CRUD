@@ -1,10 +1,21 @@
 package com.robin.springmvc.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
+import java.util.Date;
+
 public class Employee {
     private Integer id;
     private String lastName;
     private Integer age;
     private Department department;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date birth;
+
+    @NumberFormat(pattern = "##,###.#")
+    private Float salary;
 
     public Employee() {
     }
@@ -14,6 +25,22 @@ public class Employee {
         this.lastName = lastName;
         this.age = age;
         this.department = department;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date bith) {
+        this.birth = bith;
+    }
+
+    public Float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Float salary) {
+        this.salary = salary;
     }
 
     public Department getDepartment() {
@@ -55,6 +82,8 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", department=" + department +
+                ", bith=" + birth +
+                ", salary=" + salary +
                 '}';
     }
 }

@@ -15,7 +15,7 @@
 
 <form:form action="${pageContext.request.contextPath }/robin/addEmployee" method="post" modelAttribute="employee">
     <c:if test="${employee.id == null}">
-        lastName: <input type="text" name="lastName" value="${employee.lastName}"/>
+        lastName: <input type="text" name="lastName" value="${employee.lastName}">
     </c:if>
 
     <c:if test="${employee.id != null}">
@@ -23,9 +23,13 @@
     </c:if>
 
     <br>
-    age: <input type="text" name="age" value="${employee.age}"/>
+    age: <input type="text" name="age" value="${employee.age}">
     <br>
     department: <form:select path="department.id" items="${departments }" itemLabel="depName" itemValue="id"/>
+    <br>
+    birth: <input type="text" name="birth">
+    <br>
+    salary: <input type="text" name="salary">
     <br>
     <input type="submit" value="submit">
 </form:form>

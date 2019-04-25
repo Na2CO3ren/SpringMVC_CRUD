@@ -5,6 +5,8 @@ import com.robin.springmvc.dao.EmployeeDao;
 import com.robin.springmvc.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -29,15 +31,23 @@ public class CRUDHandler {
 
     @ModelAttribute
     public void setEmployee(@RequestParam(value = "id",required = false) Integer id, Map<String, Object> map) {
-        System.out.println("model attribute");
+        //System.out.println("model attribute");
         if (id != null) {
             map.put("employee",employeeDao.getEmployeeById(id));
         }
     }
 
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public String addEmployee(Employee employee) {
+    public String addEmployee(Employee employee, BindingResult bindingResult) {
         System.out.println("add employee : " + employee.toString());
+
+        if (bindingResult.getErrorCount() > 0) {
+            System.out.println("There is " + bindingResult.getErrorCount() + " errors");
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                System.out.println(fieldError.getField() + " ====> " + fieldError.getDefaultMessage());
+            }
+        }
+
         employeeDao.addEmployee(employee);
         return "redirect:/robin/showAllEmployees";
     }
