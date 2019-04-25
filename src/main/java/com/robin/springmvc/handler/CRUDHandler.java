@@ -19,6 +19,14 @@ public class CRUDHandler {
     @Autowired
     private DepartmentDao departmentDao;
 
+    @RequestMapping("/testConverter")
+    public String testConverter(@RequestParam("employee") Employee employee) {
+        System.out.println("testConverter: employee = " + employee.toString());
+
+        employeeDao.addEmployee(employee);
+        return "redirect:/robin/showAllEmployees";
+    }
+
     @ModelAttribute
     public void setEmployee(@RequestParam(value = "id",required = false) Integer id, Map<String, Object> map) {
         System.out.println("model attribute");

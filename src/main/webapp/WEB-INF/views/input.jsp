@@ -7,6 +7,12 @@
 </head>
 <body>
 
+<form action="${pageContext.request.contextPath }/robin/testConverter" method="post">
+    <input type="text" name="employee">
+    <input type="submit" value="submit">
+</form>
+
+
 <form:form action="${pageContext.request.contextPath }/robin/addEmployee" method="post" modelAttribute="employee">
     <c:if test="${employee.id == null}">
         lastName: <input type="text" name="lastName" value="${employee.lastName}"/>
