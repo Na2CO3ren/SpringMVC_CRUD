@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Title</title>
@@ -13,11 +14,12 @@
 </form>
 
 
-<form:form action="${pageContext.request.contextPath }/robin/addEmployee" method="POST" modelAttribute="employee">
+<form:form action="${pageContext.request.contextPath }/robin/addEmployee" method="POST"
+           modelAttribute="employee">
 
     <c:if test="${employee.id == null}">
-<%--        lastName: <input type="text" name="lastName" value="${employee.lastName}">--%>
-        lastName:<form:input path="lastName"/>
+        <%--        lastName: <input type="text" name="lastName" value="${employee.lastName}">--%>
+        <fmt:message key="i18n.lastName"/> : <form:input path="lastName"/>
         <form:errors path="lastName"/>
     </c:if>
 
@@ -26,15 +28,17 @@
     </c:if>
 
     <br>
-    age: <input type="text" name="age" value="${employee.age}">
+    <fmt:message key="i18n.age"/> : <input type="text" name="age" value="${employee.age}">
+
     <br>
-    department: <form:select path="department.id" items="${departments }" itemLabel="depName" itemValue="id"/>
+    <fmt:message key="i18n.department"/> : <form:select path="department.id" items="${departments }"
+                                                        itemLabel="depName" itemValue="id"/>
     <br>
-<%--    birth: <input type="text" name="birth">--%>
-    birth: <form:input path="birth"/>
+    <%--    birth: <input type="text" name="birth">--%>
+    <fmt:message key="i18n.birth"/> ： <form:input path="birth"/>
     <form:errors path="birth"/>
     <br>
-    salary: <input type="text" name="salary">
+    <fmt:message key="i18n.salary"/> : <input type="text" name="salary">
     <br>
     <input type="submit" value="submit">
 </form:form>

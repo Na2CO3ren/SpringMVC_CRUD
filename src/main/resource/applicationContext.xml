@@ -14,19 +14,29 @@
 
     <mvc:annotation-driven conversion-service="conversionService"/>
 
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="i18n"/>
-<!--        支持中文编码-->
-        <property name="defaultEncoding" value="UTF-8"/>
+        <!--        支持中文编码-->
+<!--        <property name="defaultEncoding" value="UTF-8"/>-->
     </bean>
 
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <set>
                 <ref bean="employeeConverter"/>
             </set>
         </property>
     </bean>
+
+    <bean id="sessionLocaleResolver"
+          class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
