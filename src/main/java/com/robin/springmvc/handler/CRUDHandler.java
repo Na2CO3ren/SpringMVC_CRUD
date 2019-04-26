@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -38,14 +40,16 @@ public class CRUDHandler {
     }
 
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public String addEmployee(Employee employee, BindingResult bindingResult) {
+    public String addEmployee(@Valid Employee employee, BindingResult bindingResult,Map<String,Object> map) {
         System.out.println("add employee : " + employee.toString());
-
         if (bindingResult.getErrorCount() > 0) {
             System.out.println("There is " + bindingResult.getErrorCount() + " errors");
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
                 System.out.println(fieldError.getField() + " ====> " + fieldError.getDefaultMessage());
             }
+            map.put("employee",employee);
+            map.put("departments",departmentDao.getAllDepartments());
+            return "input";
         }
 
         employeeDao.addEmployee(employee);

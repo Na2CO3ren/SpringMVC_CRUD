@@ -13,9 +13,12 @@
 </form>
 
 
-<form:form action="${pageContext.request.contextPath }/robin/addEmployee" method="post" modelAttribute="employee">
+<form:form action="${pageContext.request.contextPath }/robin/addEmployee" method="POST" modelAttribute="employee">
+
     <c:if test="${employee.id == null}">
-        lastName: <input type="text" name="lastName" value="${employee.lastName}">
+<%--        lastName: <input type="text" name="lastName" value="${employee.lastName}">--%>
+        lastName:<form:input path="lastName"/>
+        <form:errors path="lastName"/>
     </c:if>
 
     <c:if test="${employee.id != null}">
@@ -27,7 +30,9 @@
     <br>
     department: <form:select path="department.id" items="${departments }" itemLabel="depName" itemValue="id"/>
     <br>
-    birth: <input type="text" name="birth">
+<%--    birth: <input type="text" name="birth">--%>
+    birth: <form:input path="birth"/>
+    <form:errors path="birth"/>
     <br>
     salary: <input type="text" name="salary">
     <br>

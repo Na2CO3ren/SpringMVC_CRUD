@@ -3,15 +3,19 @@ package com.robin.springmvc.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 public class Employee {
     private Integer id;
+    @NotEmpty
     private String lastName;
     private Integer age;
     private Department department;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
 
     @NumberFormat(pattern = "##,###.#")
@@ -82,7 +86,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", department=" + department +
-                ", bith=" + birth +
+                ", birth=" + birth +
                 ", salary=" + salary +
                 '}';
     }
