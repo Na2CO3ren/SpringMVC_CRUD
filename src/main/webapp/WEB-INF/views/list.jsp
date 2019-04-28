@@ -38,9 +38,9 @@
 <br><br>
 <a href="showInput">Add Employee</a>
 <br>
-<a href="showInput?locale=zh_CN">中文</a>
+<a href="showI18n?locale=zh_CN">中文</a>
 <br>
-<a href="showInput?locale=en_US">英文</a>
+<a href="showI18n?locale=en_US">英文</a>
 
 </body>
 </html>

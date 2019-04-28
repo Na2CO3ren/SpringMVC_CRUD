@@ -18,8 +18,9 @@
            modelAttribute="employee">
 
     <c:if test="${employee.id == null}">
-        <%--        lastName: <input type="text" name="lastName" value="${employee.lastName}">--%>
+        <%--国际化显示--%>
         <fmt:message key="i18n.lastName"/> : <form:input path="lastName"/>
+        <%--错误显示--%>
         <form:errors path="lastName"/>
     </c:if>
 

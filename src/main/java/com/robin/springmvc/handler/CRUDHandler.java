@@ -66,7 +66,16 @@ public class CRUDHandler {
 
 
     @RequestMapping("/showInput")
-    public String showInput(Map<String, Object> map, Locale locale) {
+    public String showInput(Map<String, Object> map) {
+        System.out.println("show input");
+
+        map.put("employee", new Employee());
+        map.put("departments", departmentDao.getAllDepartments());
+        return "input";
+    }
+
+    @RequestMapping("/showI18n")
+    public String showI18n(Map<String, Object> map, Locale locale) {
         System.out.println("show input");
 
         System.out.println("message:" +
