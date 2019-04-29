@@ -36,6 +36,18 @@ public class CRUDHandler {
         return "redirect:/robin/showAllEmployees";
     }
 
+    @ExceptionHandler({ArithmeticException.class})
+    public String handleException(Exception ex) {
+        System.out.println(ex.getMessage());
+        return "success";
+    }
+
+    @RequestMapping("/testException")
+    public String testException(@RequestParam("num") Integer num) {
+        System.out.println("The result is : " + 10 / num);
+        return "success";
+    }
+
     @ModelAttribute
     public void setEmployee(@RequestParam(value = "id", required = false) Integer id, Map<String,
             Object> map) {
